@@ -1,7 +1,14 @@
-import React from "react";
+import React from "react"
 
 const ECommerce = () => {
-  return <div>ECommerce</div>;
-};
+  const text = <span>Title</span>
+  const content = (
+    <div>
+      <p>Content</p>
+      <p>Content</p>
+    </div>
+  )
+  return <div>ecoomer</div>
+}
 
-export default ECommerce;
+export default ECommerce

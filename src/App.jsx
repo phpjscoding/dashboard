@@ -1,10 +1,10 @@
-import "./App.css";
-import "antd/dist/antd.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { FiSettings } from "react-icons/fi";
-import { Tooltip, Drawer } from "antd";
-import { useState } from "react";
-import { NavBar, Footer, SideBar, ThemeSettings } from "./components";
+import "./App.css"
+import "antd/dist/antd.css"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { FiSettings } from "react-icons/fi"
+import { Tooltip, Drawer } from "antd"
+import { useState } from "react"
+import { NavBar, Footer, SideBar, ThemeSettings } from "./components"
 import {
   ECommerce,
   Orders,
@@ -22,26 +22,19 @@ import {
   ColorPicker,
   ColorMapping,
   Editor,
-} from "./pages";
+} from "./pages"
 
 const App = () => {
-  const [activeMenu, setActiveMenu] = useState(false);
+  const [themeSettings, setThemeSettings] = useState(false)
 
-  const showDrawer = () => {
-    setActiveMenu(true);
-  };
-
-  const closeDrawer = () => {
-    setActiveMenu(false);
-  };
   return (
     <section className="bg-green-400">
       <BrowserRouter>
-        <div className="flex relative">
+        <div className="relative">
           <div className="fixed right-4 bottom-4 z-index[1000]">
             <Tooltip title="Settings">
               <button
-                onClick={showDrawer}
+                onClick={() => setThemeSettings(true)}
                 className="text-3xl p-3 hover:drop-shadow-lg hover:bg-light-gray"
                 style={{ backgroundColor: "cyan", borderRadius: "50%" }}
               >
@@ -51,17 +44,18 @@ const App = () => {
           </div>
 
           <Drawer
-            title="Settings"
-            placement="left"
+            title="Theme Settings"
+            placement="right"
             closable={true}
-            onClose={closeDrawer}
-            visible={activeMenu}
-            key="left"
+            onClose={() => setThemeSettings(false)}
+            visible={themeSettings}
+            width="270"
+            key="right"
           >
-            <SideBar />
+            theme settings
           </Drawer>
-          <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
-            nav bar
+          <div className=" nav-bar fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
+            <NavBar />
           </div>
           <div className="routes">
             <Routes>
@@ -90,7 +84,7 @@ const App = () => {
         </div>
       </BrowserRouter>
     </section>
-  );
-};
+  )
+}
 
-export default App;
+export default App
