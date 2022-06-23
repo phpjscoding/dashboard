@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import { MdOutlineCancel } from "react-icons/md"
 
 import { chatData } from "../data/dummy"
 import { Button } from "antd"
-const [showNotifications, setShowNotifications] = useState(false)
 
-const Notification = () => {
+const Notification = ({ setShowNotifications }) => {
   const hideNotification = () => {
     setShowNotifications(false)
   }
@@ -13,7 +12,7 @@ const Notification = () => {
   const { currentColor } = "bg-orange-400"
 
   return (
-    <div className="nav-item  bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
+    <div className="nav-item  bg-white dark:bg-[#42464D] p-1 rounded-lg w-72">
       <div className="flex justify-between items-center">
         <div className="flex gap-3">
           <p className="font-semibold text-lg dark:text-gray-200">
@@ -27,7 +26,7 @@ const Notification = () => {
             5 New
           </button>
         </div>
-        <Button>
+        <Button onClick={hideNotification} className="border-none">
           <MdOutlineCancel />
         </Button>
       </div>

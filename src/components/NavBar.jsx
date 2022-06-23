@@ -10,6 +10,7 @@ import avatar from "../data/avatar.jpg"
 import StateContext from "../context/ContextProvider"
 import { useContext } from "react"
 import SideBar from "./Drawer"
+import { MdOutlineCancel } from "react-icons/md"
 
 const NavBar = () => {
   const currentColor = "orange"
@@ -44,7 +45,7 @@ const NavBar = () => {
         </Tooltip>
 
         <Popover
-          content={<Notification />}
+          content={<Notification setShowNotifications={setShowNotifications} />}
           title="Notifications"
           trigger="click"
           visible={showNotifications}
@@ -62,19 +63,23 @@ const NavBar = () => {
         </Popover>
 
         <Drawer
+          mask={false}
           title="Menu"
           placement="left"
           closable={true}
           onClose={() => setShowMenu(false)}
           visible={showMenu}
           key="left"
+          closeIcon={<MdOutlineCancel />}
         >
           <SideBar />
         </Drawer>
         <Popover
           content={
             <div>
-              <a onClick={hideChat}>Close</a>
+              <a onClick={hideChat}>
+                <MdOutlineCancel />
+              </a>
               <div>
                 <Chat />
               </div>
@@ -95,23 +100,24 @@ const NavBar = () => {
             </div>
           </Tooltip>
         </Popover>
-
-        <Tooltip title="Profile" placement="top">
-          <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg">
-            <img
-              className="rounded-full w-8 h-8"
-              src={avatar}
-              alt="user-profile"
-            />
-            <p>
-              <span className="text-gray-400 text-14">Hi,</span>{" "}
-              <span className="text-gray-400 font-bold ml-1 text-14">
-                Michael
-              </span>
-            </p>
-            <MdKeyboardArrowDown className="text-gray-400 text-14" />
-          </div>
-        </Tooltip>
+        <Popover content={<UserProfile />}>
+          <Tooltip title="Profile" placement="top">
+            <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg">
+              <img
+                className="rounded-full w-8 h-8"
+                src={avatar}
+                alt="user-profile"
+              />
+              <p>
+                <span className="text-gray-400 text-14">Hi,</span>{" "}
+                <span className="text-gray-400 font-bold ml-1 text-14">
+                  Michael
+                </span>
+              </p>
+              <MdKeyboardArrowDown className="text-gray-400 text-14" />
+            </div>
+          </Tooltip>
+        </Popover>
         <Tooltip title="Cart" onClick={() => setCartSlide(true)}>
           <div className="relative text-xl rounded-full p-3 hover:bg-light-gray">
             <FiShoppingCart color={currentColor} />

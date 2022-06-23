@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { FiSettings } from "react-icons/fi"
 import { Tooltip, Drawer } from "antd"
 import { useState } from "react"
+import { MdOutlineCancel } from "react-icons/md"
+
 import { NavBar, Footer, SideBar, ThemeSettings } from "./components"
 import {
   ECommerce,
@@ -51,6 +53,7 @@ const App = () => {
             visible={themeSettings}
             width="270"
             key="right"
+            closeIcon={<MdOutlineCancel />}
           >
             theme settings
           </Drawer>
